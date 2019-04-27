@@ -9,9 +9,7 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      searchResults: [{name: 'song1',artist: 'artist1',album: 'album1', id: 'id1'},
-                      {name: 'song2',artist: 'artist2',album: 'ablum2', id: 'id2'},
-                      {name: 'song3',artist: 'artist3',album: 'album3', id: 'id3'},],
+      searchResults: [],
       playlistName: 'My Playlist',
       playlistTracks: []
     }
@@ -49,6 +47,9 @@ class App extends React.Component {
     for (let j = 0; j < this.state.playlistTracks.length; j++) {
       trackURIs.push(this.state.playlistTracks[j].uri)
     }
+
+    Spotify.savePlaylist(this.state.playlistName, trackURIs)
+
     this.setState({playlistName: 'My Playlist',
                    playlistTracks: []})
   }
@@ -79,3 +80,8 @@ class App extends React.Component {
 }
 
 export default App
+
+
+{/* {name: 'song1',artist: 'artist1',album: 'album1', id: 'id1'},
+                {name: 'song2',artist: 'artist2',album: 'ablum2', id: 'id2'},
+                {name: 'song3',artist: 'artist3',album: 'album3', id: 'id3'}, */}
